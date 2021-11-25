@@ -1,0 +1,202 @@
+<div class="container">
+    <h5>Crud de Producto</h5>
+
+    <div class="col-md-23" style="margin-top: 3%">
+
+
+        <div class="row" style="height: 80px">
+            <div class="col-md-4">
+                <input [(ngModel)]="filtro" class="form-control" id="id_txt_filtro" name="filtro"
+                    placeholder="Ingrese el nombre" type="text" maxlength="30" />
+            </div>
+            <div class="col-md-2">
+                <button (click)="consulta()" type="button" class="btn btn-primary" id="id_btn_filtrar"
+                    style="width: 150px">Filtrar</button>
+            </div>
+            <div class="col-md-2">
+                <button type="button" data-toggle='modal' data-target="#idModalRegistra" class='btn btn-success'
+                    style="width: 150px">Registrar</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content">
+
+                    <table id="id_table" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%">#</th>
+                                <th style="width: 30%">NombreProducto</th>
+                                <th style="width: 10%">Cantidad</th>
+                                <th style="width: 10%">PrecioUnitario</th>
+                                <th style="width: 31%">Stock</th>
+                                <th style="width: 7%"></th>
+                                <th style="width: 7%"></th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let aux of producto1">
+                                <td>{{aux.idProducto}}</td>
+                                <td>{{aux.nombreProducto}}</td>
+                                <td>{{aux.cantidad}}</td>
+                                <td>{{aux.preciounitario}}</td>
+                                <td>{{aux.stock}}</td>
+                                <td>
+                                    <button (click)="eliminar(aux)" type="button" style="width: 90px"
+                                        class="btn btn-danger btn-sm" data-toggle='modal'
+                                        data-target="#exampleModalEliminar">Eliminar</button>
+                                </td>
+                                <td><button (click)="busca(aux)" type="button" style="width: 90px"
+                                        class="btn btn-secondary btn-sm" data-toggle="modal"
+                                        data-target="#idModalActualizar">Editar</button></td>
+
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="idModalRegistra" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog" style="max-width: 70%;">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Registro de Producto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form class="content">
+                        <div class="submit-form">
+
+                            <div class="row">
+                                <div class="col-lg-10">
+                                    <label for="nombreproducto">Nombre Producto</label>
+                                    <input [(ngModel)]="producto.nombreProducto" type="text"
+                                        placeholder="Ingrese Razon  Social" class="form-control" name="razonsocial"
+                                        id="razonsocial" />
+                                </div>
+
+                                <div class="col-lg-2">
+                                    <label for="cantidad">Cantidad</label>
+                                    <input [(ngModel)]="producto.cantidad" t type="text" placeholder="Ingrese Cantidad"
+                                        class="form-control" name="cantidad" id="cantidad" maxlength="11" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-10">
+                                    <label for="preciouniario"> Precio Unitario</label>
+                                    <input [(ngModel)]="producto.preciounitario" type="text"
+                                        placeholder="Ingrese Precio" class="form-control" name="preciounitario"
+                                        id="preciounitario" maxlength="9" />
+                                </div>
+
+                                <div class="col-lg-2">
+                                    <label for="stock">Stock</label>
+                                    <input [(ngModel)]="producto.stock" t type="text" placeholder="Ingrese Stock"
+                                        class="form-control" name="stock" id="stock" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btn_reg_cerrar"
+                                style="width: 100px;">Close</button>
+                            <div class="form-group text-center">
+                                <div class="col-lg-12">
+                                    <button (click)="registra()" id="id_reg_registra"
+                                        class="btn btn-success form-control" style="width: 100px;">Registrar</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </form>
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="idModalActualizar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="max-width: 80%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Actualización de Proveedor</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <form class="content">
+                        <div class="submit-form">
+
+                            <div class="row">
+                                <div class="col-lg-10">
+                                    <label for="nombreproducto">Nombre Producto</label>
+                                    <input [(ngModel)]="producto.nombreProducto" type="text"
+                                        placeholder="Ingrese Razon  Social" class="form-control" name="razonsocial"
+                                        id="razonsocial" />
+                                </div>
+
+                                <div class="col-lg-2">
+                                    <label for="cantidad">Cantidad</label>
+                                    <input [(ngModel)]="producto.cantidad" t type="text" placeholder="Ingrese Cantidad"
+                                        class="form-control" name="cantidad" id="cantidad" maxlength="11" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-10">
+                                    <label for="preciouniario"> Precio Unitario</label>
+                                    <input [(ngModel)]="producto.preciounitario" type="text"
+                                        placeholder="Ingrese Precio" class="form-control" name="preciounitario"
+                                        id="preciounitario" maxlength="9" />
+                                </div>
+
+                                <div class="col-lg-2">
+                                    <label for="stock">Stock</label>
+                                    <input [(ngModel)]="producto.stock" t type="text" placeholder="Ingrese Stock"
+                                        class="form-control" name="stock" id="stock" />
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                id="btn_act_cerrar">Close</button>
+                            <div class="form-group text-center">
+                                <div class="col-lg-12">
+                                    <button (click)="actualiza()" id="id_act_actualiza"
+                                        class="btn btn-success form-control">Actualizar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
